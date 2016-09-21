@@ -1,4 +1,4 @@
-@@ -0,0 +1,312 @@
+/*
 Skip to content
 This repository
 Pull requests
@@ -14,7 +14,7 @@ Branch: master Find file FFmpeg/doc/examples/filtering_audio.c
 @llogan llogan fix some a/an typos
 8 contributors @saste @michaelni @ubitux @Nevcairiel @llogan @rectalogic @adgkinsey @pkoshevoy
 RawBlameHistory     296 lines (256 sloc)  9.82 KB
-/*
+
  * Copyright (c) 2010 Nicolas George
  * Copyright (c) 2011 Stefano Sabatini
  * Copyright (c) 2012 Clément Bœsch
@@ -62,6 +62,14 @@ AVFilterContext *buffersink_ctx;
 AVFilterContext *buffersrc_ctx;
 AVFilterGraph *filter_graph;
 static int audio_stream_index = -1;
+
+int __attribute__((deprecated)) a() {
+    return 10;
+}
+
+int __attribute__((deprecated)) b() {
+    return a() * 2; //< I want to get rid of warnings from this line
+}
 
 static int open_input_file(const char *filename)
 {
@@ -308,6 +316,10 @@ end:
     }
 
     exit(0);
+    return b(); //< I expect a warning on this line only
 }
-Contact GitHub API Training Shop Blog About
-© 2016 GitHub, Inc. Terms Privacy Security Status Help 
+
+
+
+//Contact GitHub API Training Shop Blog About
+//© 2016 GitHub, Inc. Terms Privacy Security Status Help 
